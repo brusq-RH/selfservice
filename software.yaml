@@ -52,7 +52,7 @@ spec:
             - properties:
                 typeObjet:
                   const: Grafana
-                Softwareersion:
+                Softwareversion:
                   type: string
                   title: Choisissez une version
                   enum:
