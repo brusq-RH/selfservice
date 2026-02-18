@@ -21,7 +21,7 @@ spec:
             - Grafana
 
       dependencies:
-        typeObjet:
+        SoftwareName:
           oneOf:
             - properties:
                 typeObjet:
