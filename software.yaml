@@ -24,7 +24,7 @@ spec:
         SoftwareName:
           oneOf:
             - properties:
-                typeObjet:
+                SoftwareName:
                   const: Postgresql
                 Softwareversion:
                   type: string
@@ -37,7 +37,7 @@ spec:
                 - Softwareversion
 
             - properties:
-                typeObjet:
+                SoftwareName:
                   const: Nginx
                 Softwareversion:
                   type: string
@@ -50,7 +50,7 @@ spec:
                 - Softwareversion
 
             - properties:
-                typeObjet:
+                SoftwareName:
                   const: Grafana
                 Softwareversion:
                   type: string
