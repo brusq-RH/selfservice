@@ -12,7 +12,7 @@ spec:
       required:
         - SoftwareName
       properties:
-        typeObjet:
+        SoftwareName:
           type: string
           title: Software name
           enum:
