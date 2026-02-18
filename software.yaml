@@ -30,9 +30,9 @@ spec:
                   type: string
                   title: Choisissez une version
                   enum:
-                    - 13
-                    - 14
-                    - 16
+                    - v13
+                    - v14
+                    - v16
               required:
                 - Softwareversion
 
@@ -43,9 +43,9 @@ spec:
                   type: string
                   title: Choisissez une version
                   enum:
-                    - 2.4
-                    - 2.5
-                    - 2.6
+                    - v2.4
+                    - v2.5
+                    - v2.6
               required:
                 - Softwareversion
 
@@ -56,9 +56,9 @@ spec:
                   type: string
                   title: Choisissez une version
                   enum:
-                    - 2
-                    - 3
-                    - 4
+                    - v2
+                    - v3
+                    - v4
               required:
                 - Softwareversion
                 
