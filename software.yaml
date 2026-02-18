@@ -67,6 +67,5 @@ spec:
       name: Launch Job Template
       action: rhaap:launch-job-template
       input:
-        token: ${{ parameters.AAP_TOKEN }}
         values:
           template: test job
