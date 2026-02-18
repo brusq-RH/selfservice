@@ -47,3 +47,11 @@ spec:
                     - triangle
               required:
                 - formeChoisie
+                
+  steps:
+    - id: ansible
+      name: Generating the Ansible Source Code Component
+      action: ansible:content:create
+      input:
+        repoOwner: toto
+
