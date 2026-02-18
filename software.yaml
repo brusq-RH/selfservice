@@ -1,0 +1,71 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: software-installation
+  title: Software Installation
+spec:
+  owner: team-platform
+  type: service
+
+  parameters:
+    - title: Software 
+      required:
+        - SoftwareName
+      properties:
+        typeObjet:
+          type: string
+          title: Software name
+          enum:
+            - Postgresql
+            - Nginx
+            - Grafana
+
+      dependencies:
+        typeObjet:
+          oneOf:
+            - properties:
+                typeObjet:
+                  const: Postgresql
+                Softwareversion:
+                  type: string
+                  title: Choisissez une version
+                  enum:
+                    - 13
+                    - 14
+                    - 16
+              required:
+                - Softwareversion
+
+            - properties:
+                typeObjet:
+                  const: Nginx
+                Softwareversion:
+                  type: string
+                  title: Choisissez une version
+                  enum:
+                    - 2.4
+                    - 2.5
+                    - 2.6
+              required:
+                - Softwareversion
+
+            - properties:
+                typeObjet:
+                  const: Grafana
+                Softwareersion:
+                  type: string
+                  title: Choisissez une version
+                  enum:
+                    - 2
+                    - 3
+                    - 4
+              required:
+                - Softwareversion
+                
+  steps:
+    - id: ansible
+      name: Generating the Ansible Source Code Component
+      action: ansible:content:create
+      input:
+        repoOwner: toto
+
