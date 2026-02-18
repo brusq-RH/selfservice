@@ -63,9 +63,10 @@ spec:
                 - Softwareversion
                 
   steps:
-    - id: ansible
-      name: Generating the Ansible Source Code Component
-      action: ansible:content:create
+    - id: launch-job
+      name: Launch Job Template
+      action: rhaap:launch-job-template
       input:
-        repoOwner: toto
-
+        token: ${{ parameters.AAP_TOKEN }}
+        values:
+          template: test job
