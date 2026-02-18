@@ -70,9 +70,6 @@ spec:
         token: ${{ parameters.AAP_TOKEN }}
         values:
           template: test job
-          extraVariables:
-            app_version: v1.0.1
-            deploy_env: production
           jobType: run
           verbosity: Normal
           diffMode: true
