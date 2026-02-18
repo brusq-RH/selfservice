@@ -1,0 +1,49 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: conditional-example
+  title: Exemple questionnaire conditionnel
+spec:
+  owner: team-platform
+  type: service
+
+  parameters:
+    - title: Choix de l'objet
+      required:
+        - typeObjet
+      properties:
+        typeObjet:
+          type: string
+          title: Type d'objet
+          enum:
+            - couleur
+            - forme
+
+      dependencies:
+        typeObjet:
+          oneOf:
+            - properties:
+                typeObjet:
+                  const: couleur
+                couleurChoisie:
+                  type: string
+                  title: Choisissez une couleur
+                  enum:
+                    - vert
+                    - rouge
+                    - bleu
+              required:
+                - couleurChoisie
+
+            - properties:
+                typeObjet:
+                  const: forme
+                formeChoisie:
+                  type: string
+                  title: Choisissez une forme
+                  enum:
+                    - carré
+                    - rond
+                    - triangle
+              required:
+                - formeChoisie
