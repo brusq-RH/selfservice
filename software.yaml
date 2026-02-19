@@ -11,7 +11,23 @@ spec:
     - title: Software 
       required:
         - SoftwareName
+        - Softwareversion
+        - token
+        
       properties:
+        token:
+          title: Token
+          type: string
+          description: OAuth2 token
+          ui:field: AAPTokenField
+          ui:widget: hidden
+          ui:backstage:
+            review:
+              show: false
+          ui:options:
+            disabled: true
+            hidden: true
+
         SoftwareName:
           type: string
           title: Software name
@@ -61,16 +77,13 @@ spec:
                     - v4
               required:
                 - Softwareversion
-                
+
   steps:
-    - id: launch-job
-      name: Launch Job Template
-      action: rhaap:launch-job-template
-      input:
-        token: ${{ parameters.AAP_TOKEN }}
-        values:
-          template: test job
-          jobType: run
-          verbosity: Normal
-          diffMode: true
-          timeout: 3600
+      - id: launch-job
+        name: Launch AAP job template
+        action: rhaap:launch-job-template
+        input:
+          token: ${{ parameters.token }}
+          values:
+            template: test job
+
