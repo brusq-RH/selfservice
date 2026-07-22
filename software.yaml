@@ -3,31 +3,17 @@ kind: Template
 metadata:
   name: software-installation
   title: Software Installation
+  description: Install software via an AAP job template from the Automation Portal
 spec:
-  owner: team-platform
+  owner: group:default/team-platform
   type: service
 
   parameters:
-    - title: Software 
+    - title: Software
       required:
         - SoftwareName
         - Softwareversion
-        - token
-        
       properties:
-        token:
-          title: Token
-          type: string
-          description: OAuth2 token
-          ui:field: AAPTokenField
-          ui:widget: hidden
-          ui:backstage:
-            review:
-              show: false
-          ui:options:
-            disabled: true
-            hidden: true
-
         SoftwareName:
           type: string
           title: Software name
@@ -44,7 +30,7 @@ spec:
                   const: Postgresql
                 Softwareversion:
                   type: string
-                  title: Choisissez une version
+                  title: Choose a version
                   enum:
                     - v13
                     - v14
@@ -57,7 +43,7 @@ spec:
                   const: Nginx
                 Softwareversion:
                   type: string
-                  title: Choisissez une version
+                  title: Choose a version
                   enum:
                     - v2.4
                     - v2.5
@@ -70,7 +56,7 @@ spec:
                   const: Grafana
                 Softwareversion:
                   type: string
-                  title: Choisissez une version
+                  title: Choose a version
                   enum:
                     - v2
                     - v3
@@ -79,11 +65,13 @@ spec:
                 - Softwareversion
 
   steps:
-      - id: launch-job
-        name: Launch AAP job template
-        action: rhaap:launch-job-template
-        input:
-          token: ${{ secrets.aapToken }}
-          values:
-            template: test job
-
+    - id: launch-job
+      name: Launch AAP job template
+      action: rhaap:launch-job-template
+      input:
+        token: ${{ secrets.aapToken }}
+        values:
+          template: test job
+          extraVariables:
+            software_name: ${{ parameters.SoftwareName }}
+            software_version: ${{ parameters.Softwareversion }}
