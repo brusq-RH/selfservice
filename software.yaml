@@ -41,7 +41,7 @@ spec:
                   type: string
                   title: Choose a version
                   enum:
-                    - v13
+                    - v11
                     - v14
                     - v16
               required:
