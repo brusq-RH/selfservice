@@ -14,6 +14,15 @@ spec:
         - SoftwareName
         - Softwareversion
       properties:
+        token:
+          title: AAP Token
+          type: string
+          ui:field: AAPTokenField
+          ui:widget: hidden
+          ui:backstage:
+            review:
+              show: false
+
         SoftwareName:
           type: string
           title: Software name
