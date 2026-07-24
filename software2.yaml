@@ -1,8 +1,8 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: software-installation
-  title: Software Installation
+  name: software-installation2
+  title: Software Installation2
   description: Install software via an AAP job template from the Automation Portal
 spec:
   owner: group:default/team-platform
