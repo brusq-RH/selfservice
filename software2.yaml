@@ -1,0 +1,86 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: software-installation
+  title: Software Installation
+  description: Install software via an AAP job template from the Automation Portal
+spec:
+  owner: group:default/team-platform
+  type: service
+
+  parameters:
+    - title: Software
+      required:
+        - SoftwareName
+        - Softwareversion
+      properties:
+        token:
+          title: AAP Token
+          type: string
+          ui:field: AAPTokenField
+          ui:widget: hidden
+          ui:backstage:
+            review:
+              show: false
+
+        SoftwareName:
+          type: string
+          title: Software name
+          enum:
+            - Postgresql
+            - Nginx
+            - Grafana
+
+      dependencies:
+        SoftwareName:
+          oneOf:
+            - properties:
+                SoftwareName:
+                  const: Postgresql
+                Softwareversion:
+                  type: string
+                  title: Choose a version
+                  enum:
+                    - v11
+                    - v14
+                    - v16
+              required:
+                - Softwareversion
+
+            - properties:
+                SoftwareName:
+                  const: Nginx
+                Softwareversion:
+                  type: string
+                  title: Choose a version
+                  enum:
+                    - v2.4
+                    - v2.5
+                    - v2.6
+              required:
+                - Softwareversion
+
+            - properties:
+                SoftwareName:
+                  const: Grafana
+                Softwareversion:
+                  type: string
+                  title: Choose a version
+                  enum:
+                    - v2
+                    - v3
+                    - v4
+              required:
+                - Softwareversion
+
+  steps:
+    - id: launch-job
+      name: Launch AAP job template
+      action: rhaap:launch-job-template
+      input:
+        token: ${{ secrets.aapToken }}
+        values:
+          template: test job
+          extraVariables:
+            software_name: ${{ parameters.SoftwareName }}
+            software_version: ${{ parameters.Softwareversion }}
